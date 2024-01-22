@@ -1,4 +1,5 @@
-import './App.css';
+import './App.module.scss';
+import TaskRedactor from './components/TaskRedactor/TaskRedactor';
 
 function App() {
   return (
@@ -8,6 +9,9 @@ function App() {
           Hello world!
         </h1>
       </header>
+      <main>
+        <TaskRedactor />
+      </main>
     </>
   )
 }

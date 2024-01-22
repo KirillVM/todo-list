@@ -1,23 +1,26 @@
-import { ChangeEvent, MouseEvent, useState } from "react"
+import { ChangeEvent, FormEvent, FormEventHandler, MouseEvent, useState } from "react"
 
 const TaskRedactor = (): JSX.Element => {
     const [taskName, setTaskName] = useState<string>('');
 
-    const handleClickAddNewTaskButton = (e: MouseEvent<HTMLButtonElement> ) => {
+    const handleSubmitForm = (e: FormEvent<HTMLFormElement> ) => {
         e.preventDefault();
         // redux functionality
     }
 
     return <>
-        <label htmlFor="task-name">
-            <input id='task-name' type="text" />
-        </label>
-        <label htmlFor="task-description">
+        <form action="" onSubmit={handleSubmitForm}>
+          <label htmlFor="task-name" className="">
+            <input id='task-name' type="text" className=""/>
+          </label>
+          <label htmlFor="task-description" className="">
             <textarea name="task-description" id="task-description"  cols={30} rows={10}></textarea>
-        </label>
-        <button>
-            Add
-        </button>
+          </label>
+          <button  className="">
+              Add
+          </button>
+        </form>
+
     </>
 }
 
