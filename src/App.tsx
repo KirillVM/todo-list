@@ -5,15 +5,13 @@ function App() {
   return (
     <>
       <header>
-        <h1>
-          Hello world!
-        </h1>
+        <h1>TODO</h1>
       </header>
       <main>
         <TaskRedactor />
       </main>
     </>
-  )
+  );
 }
 
 export default App;

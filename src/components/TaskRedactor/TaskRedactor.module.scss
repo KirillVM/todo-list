@@ -3,7 +3,7 @@
 
 .form {
   width: 80rem;
-  background-color: $color-background-light;
+  background-color: $color-secondary;
   align-items: center;
   display: flex;
   flex-direction: column;
@@ -28,7 +28,7 @@
   margin: 0;
   font-size: 1.5rem;
   padding: 0 0.6rem;
-  background-color: $color-background-light;
+  background-color: $color-secondary;
   line-height: 2.1rem;
 }
 
@@ -37,15 +37,15 @@
   height: 4rem;
   font-size: 1.8rem;
   border-radius: 0.5rem;
-  outline: 1px solid $color-text-secondary;
+  outline: 1px solid $color-disabled;
   border: none;
-  background: $color-background-light;
+  background: $color-secondary;
   padding: 0 4.4rem 0 1.4rem;
-  color: $color-text-secondary;
+  color: $color-disabled;
 
   &:focus {
-    background-color: $color-background-light;
-    color: $color-background-secondary;
+    background-color: $color-secondary;
+    color: $color-black;
   }
 }
 
