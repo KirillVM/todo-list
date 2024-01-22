@@ -1,0 +1,52 @@
+@import 'normalize';
+@import 'placeholders';
+@import 'mixins';
+@import 'vars';
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  width: 100%;
+  font-size: 1.4rem;
+  background: $color-background;
+  @extend %font-prom;
+  color: $color-text;
+
+  img,
+  button {
+    user-select: none;
+  }
+}
+
+a {
+  text-decoration: none;
+}
+
+h1 {
+  margin: 0;
+  @include font(1.8rem);
+}
+
+h2 {
+  @include font(1.4rem);
+}
+
+table {
+  @include font(1.4rem, 1.82rem, $spacing: 0.01rem);
+}
+
+hr {
+  margin: 0;
+  border: 0;
+  height: 0.1rem;
+  background-color: $color-background-light;
+}
