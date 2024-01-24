@@ -4,11 +4,11 @@ import getDateNow from '@src/utils/getDateNow';
 
 
 interface TaskData {
-  taskId: number;
-  taskName: string;
-  taskDescription: string;
-  taskStatus: 'complete' | 'progress' | 'expired';
-  date: string;
+  id: number;
+  name: string;
+  description: string;
+  status: 'complete' | 'progress' | 'expired';
+  date: string[];
 }
 
 const initialState: TaskData[] = JSON.parse(localStorage.getItem('taskData') || "") || undefined;
@@ -19,31 +19,33 @@ const taskSlice = createSlice({
   reducers: {
     setNewTask(state, action: PayloadAction<TaskRedactorData>) {
       const newTask: TaskData = {
-        taskId: state.length,
-        taskName: action.payload.taskName,
-        taskDescription: action.payload.taskDescription,
-        taskStatus: 'progress',
-        date: getDateNow()
+        id: action.payload.id,
+        name: action.payload.taskName,
+        description: action.payload.taskDescription,
+        status: 'progress',
+        date: [`create: ${getDateNow()}`]
       }
       state = [...state, newTask];
     },
-    // updateTask(state, action: PayloadAction<TaskRedactorData>) {
-    //   const newTask: TaskData = {
-    //     taskId: 1,
-    //     taskName: action.payload.taskName,
-    //     taskDescription: action.payload.taskDescription,
-    //     taskStatus: 'progress',
-    //     date: getDateNow()
-    //   }
-    //   state = [...state, newTask];
-    // },
+    updateTask(state, action: PayloadAction<TaskRedactorData>) {
+      const updatedTask: TaskData = {
+        id: action.payload.id,
+        name: action.payload.taskName,
+        description: action.payload.taskDescription,
+        status: 'progress',
+        date: [`update: ${getDateNow()}`]
+      }
+      state = state.map((task) => {
+        return task.id === updatedTask.id ? updatedTask : task;
+      });
+    },
 
     removeTask(state, action: PayloadAction<number>) {
-      state = state.filter((task: TaskData) => task.taskId !== action.payload)
+      state = state.filter((task: TaskData) => task.id !== action.payload)
     },
     completeTask(state, action: PayloadAction<number>) {
       state = state.map((task: TaskData) => {
-        if (task.taskId === action.payload) task.taskStatus = 'complete';
+        if (task.id === action.payload) task.status = 'complete';
         return task;
       })
     },
@@ -54,6 +56,6 @@ export const {
   setNewTask,
   removeTask,
   completeTask,
-  // updateTask,
+  updateTask,
 } = taskSlice.actions;
 export default taskSlice.reducer;
