@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { TaskRedactorData } from '@src/components/TaskRedactor/TaskRedactor.interface';
+import { TaskRedactorData, TaskRedactorFormData } from '@src/components/TaskRedactor/TaskRedactor.interface';
 import getDateNow from '@src/utils/getDateNow';
 
 
@@ -11,21 +11,21 @@ interface TaskData {
   date: string[];
 }
 
-const initialState: TaskData[] = JSON.parse(localStorage.getItem('taskData') || "") || undefined;
+const initialState: TaskData[] = JSON.parse(localStorage.getItem('taskData') || 'null') || [] as TaskData[];
 
 const taskSlice = createSlice({
   name: 'task',
   initialState,
   reducers: {
-    setNewTask(state, action: PayloadAction<TaskRedactorData>) {
+    setNewTask(state, action: PayloadAction<TaskRedactorFormData>) {
       const newTask: TaskData = {
-        id: action.payload.id,
+        id: state.length,
         name: action.payload.taskName,
         description: action.payload.taskDescription,
         status: 'progress',
         date: [`create: ${getDateNow()}`]
       }
-      state = [...state, newTask];
+      return [...state, newTask];
     },
     updateTask(state, action: PayloadAction<TaskRedactorData>) {
       const updatedTask: TaskData = {
@@ -35,16 +35,16 @@ const taskSlice = createSlice({
         status: 'progress',
         date: [`update: ${getDateNow()}`]
       }
-      state = state.map((task) => {
+      return state.map((task) => {
         return task.id === updatedTask.id ? updatedTask : task;
       });
     },
 
     removeTask(state, action: PayloadAction<number>) {
-      state = state.filter((task: TaskData) => task.id !== action.payload)
+      return state.filter((task: TaskData) => task.id !== action.payload)
     },
     completeTask(state, action: PayloadAction<number>) {
-      state = state.map((task: TaskData) => {
+      return state.map((task: TaskData) => {
         if (task.id === action.payload) task.status = 'complete';
         return task;
       })

@@ -3,10 +3,15 @@ import styles from './TaskRedactor.module.scss';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import taskRedactorSchema from './TaskRedactor.schema';
-import { TaskRedactorData } from './TaskRedactor.interface';
+import { TaskRedactorFormData} from './TaskRedactor.interface';
+import { useAppDispatch, useAppSelector } from '@src/store/hooks';
+import { setNewTask } from '@src/store/todoSlice';
 
 const TaskRedactor = (): JSX.Element => {
-  const methods = useForm<TaskRedactorData>({
+  const dispatch = useAppDispatch();
+  const a = useAppSelector((state) => state);
+
+  const methods = useForm<TaskRedactorFormData>({
     resolver: yupResolver(taskRedactorSchema),
     mode: 'onChange',
   });
@@ -16,21 +21,20 @@ const TaskRedactor = (): JSX.Element => {
     formState: { errors },
   } = methods;
 
-  const { taskName, taskDescription } = errors;
-
-  const onSubmitHandler: SubmitHandler<TaskRedactorData> = (data) => {
-    //redux logic
-    console.log(data, taskName, taskDescription);
+  const onSubmitHandler: SubmitHandler<TaskRedactorFormData> = (data) => {
+    dispatch(setNewTask(data))
+    console.log(data);
   };
+
   return (
     <>
       <form
         className={clsx(styles.form)}
         onSubmit={handleSubmit(onSubmitHandler)}
       >
-        <label htmlFor="taskName" className={clsx(styles.form__row)}>
+        <label htmlFor="taskName" className={clsx(styles.form__name)}>
           <span
-            className={clsx(styles['form__row-name'], styles['name-container'])}
+            className={clsx(styles['form__name-label'], styles['name-container'])}
           >
             Task name
           </span>
@@ -40,10 +44,19 @@ const TaskRedactor = (): JSX.Element => {
             type="text"
             className={clsx(styles.form__input)}
           />
+          {errors.taskName ? (
+            <p className={clsx(styles.error)}>
+              {
+                errors.taskName.message
+              }
+            </p>
+          ) : (
+            <p className={clsx(styles.error)}> </p>
+          )}
         </label>
-        <label htmlFor="taskDescription" className={clsx(styles.form__row)}>
+        <label htmlFor="taskDescription" className={clsx(styles.form__description)}>
           <span
-            className={clsx(styles['form__row-name'], styles['name-container'])}
+            className={clsx(styles['form__description-label'], styles['name-container'])}
           >
             Task description
           </span>
@@ -52,11 +65,19 @@ const TaskRedactor = (): JSX.Element => {
             id="taskDescription"
             cols={30}
             rows={10}
-            className={clsx(styles.form__input)}
-            style={{ paddingTop: '1rem' }}
+            className={clsx(styles.form__textarea)}
           ></textarea>
+          {errors.taskDescription ? (
+            <p className={clsx(styles.error)}>
+              {
+                errors.taskDescription.message
+              }
+            </p>
+          ) : (
+            <p className={clsx(styles.error)}> </p>
+          )}
         </label>
-        <button className="">Add</button>
+        <button className={clsx(styles.button_submit)}>Add</button>
       </form>
     </>
   );
