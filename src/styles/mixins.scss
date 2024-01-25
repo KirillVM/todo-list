@@ -6,3 +6,31 @@
     letter-spacing: $spacing;
   }
   
+  @mixin todo-item($font-weight: bold, $heightBackground: 15%) {
+    color: $color-black;
+    font-weight: $font-weight;
+    text-decoration: none;
+    position: relative;
+    transition: height 0.3s ease;
+    z-index: 2;
+    cursor: pointer;
+  
+    &:before {
+      content: '';
+      position: absolute;
+      background-color: $color-accent-light;
+      width: 106%;
+      height: $heightBackground;
+      bottom: -0.3rem;
+      left: -0.3rem;
+      border-radius: 0.2rem;
+      transition: height 0.3s ease;
+      z-index: -1;
+    }
+  
+    &:hover {
+      &:before {
+        height: 115%;
+      }
+    }
+  }
