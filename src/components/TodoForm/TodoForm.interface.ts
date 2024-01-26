@@ -1,5 +1,5 @@
 export interface TodoFormData {
-  taskName: string;
+  todoName: string;
 }
 
 export interface TodoData extends TodoFormData {

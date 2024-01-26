@@ -10,7 +10,7 @@ const TaskList = (): JSX.Element => {
   );
   return (
     <>
-      <section className={clsx(styles.container)}>
+      <section className={clsx(styles.container, styles.border)}>
         <h3>InProgress</h3>
         {data &&
           data.map((task) => {

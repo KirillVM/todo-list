@@ -9,8 +9,8 @@ const todoSlice = createSlice({
   reducers: {
     addNewTask(state, action: PayloadAction<TodoFormData>) {
       const newTask: TaskData = {
-        id: state.length,
-        name: action.payload.taskName,
+        id: new Date().getTime(),
+        name: action.payload.todoName,
         status: 'progress',
         date: getDateNow(),
       };

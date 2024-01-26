@@ -6,6 +6,7 @@ import taskRedactorSchema from './TodoForm.schema';
 import { TodoFormData } from './TodoForm.interface';
 import { useAppDispatch } from '@src/store/hooks';
 import { addNewTask } from '@src/store/todoSlice';
+import { useEffect } from 'react';
 
 const TodoForm = (): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -13,17 +14,24 @@ const TodoForm = (): JSX.Element => {
   const methods = useForm<TodoFormData>({
     resolver: yupResolver(taskRedactorSchema),
     mode: 'onChange',
+    defaultValues: {
+      todoName: '',
+    },
   });
   const {
     handleSubmit,
     register,
-    formState: { errors },
+    reset,
+    formState: { errors, isSubmitSuccessful },
   } = methods;
 
-  const onSubmitHandler: SubmitHandler<TodoFormData> = (data) => {
-    dispatch(addNewTask(data));
-    console.log(data);
+  const onSubmitHandler: SubmitHandler<TodoFormData> = (formData) => {
+    dispatch(addNewTask(formData));
   };
+
+  useEffect(() => {
+    reset();
+  }, [isSubmitSuccessful, reset]);
 
   return (
     <>
@@ -31,16 +39,16 @@ const TodoForm = (): JSX.Element => {
         className={clsx(styles.form)}
         onSubmit={handleSubmit(onSubmitHandler)}
       >
-        <label htmlFor="taskName" className={clsx(styles.form__name)}>
+        <label htmlFor="todoName" className={clsx(styles.form__name)}>
           <input
-            {...register('taskName', { required: true })}
-            id="taskName"
+            {...register('todoName', { required: true })}
+            id="todoName"
             type="text"
             placeholder="Add your task"
             className={clsx(styles.form__input)}
           />
-          {errors.taskName ? (
-            <p className={clsx(styles.error)}>{errors.taskName.message}</p>
+          {errors.todoName ? (
+            <p className={clsx(styles.error)}>{errors.todoName.message}</p>
           ) : (
             <p className={clsx(styles.error)}> </p>
           )}

@@ -4,7 +4,7 @@ import { VALIDATION_RULES_REG_EXP } from './validationRules';
 const requeredMessage = 'requered';
 
 const taskRedactorSchema = object().shape({
-  taskName: string()
+  todoName: string()
     .required(requeredMessage)
     .matches(VALIDATION_RULES_REG_EXP.oneLowercaseChar, 'oneLowercaseChar')
     .min(2, 'description too short'),

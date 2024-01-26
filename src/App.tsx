@@ -10,11 +10,13 @@ function App() {
   return (
     <>
       <ErrorBoundary fallback={<ErrorBoundaryPage />}>
-        <Header />
-        <main className={clsx(styles.main)}>
-          <TodoPage />
-        </main>
-        <Footer />
+        <div className={clsx(styles.app)}>
+          <Header />
+          <main className={clsx(styles.main)}>
+            <TodoPage />
+          </main>
+          <Footer />
+        </div>
       </ErrorBoundary>
     </>
   );
