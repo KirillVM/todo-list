@@ -18,12 +18,10 @@ const TodoItem = (taskProps: TaskProps): JSX.Element => {
 
   const handleCompleteClick = () => {
     dispatch(setTaskInProgress(taskData.id));
-    console.log(taskData.id);
   };
 
   const handleInProgressClick = () => {
     dispatch(setTaskComplete(taskData.id));
-    console.log(taskData.id);
   };
 
   const handleRemoveClick = (e: MouseEvent<HTMLImageElement>) => {
