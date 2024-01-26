@@ -6,7 +6,7 @@ const requeredMessage = 'requered';
 const taskRedactorSchema = object().shape({
   todoName: string()
     .required(requeredMessage)
-    .matches(VALIDATION_RULES_REG_EXP.oneLowercaseChar, 'oneLowercaseChar')
+    .matches(VALIDATION_RULES_REG_EXP.oneLowercaseChar, 'should contain one lowercase character')
     .min(2, 'description too short'),
 });
 

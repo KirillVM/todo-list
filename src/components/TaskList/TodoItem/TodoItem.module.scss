@@ -5,7 +5,7 @@
   width: 80%;
   display: flex;
   align-items: center;
-  padding: 1.6rem 0.5rem 1.2rem 2rem;
+  padding: 1.6rem 0.5rem 1.2rem 0;
   border: none;
   border-radius: 0.5rem;
   @include font(1.5rem);
@@ -14,6 +14,7 @@
   &:hover {
     cursor: pointer;
     background-color: $color-secondary-dark;
+    transition: 0.2s ease;
   }
 }
 
@@ -64,5 +65,22 @@
   .date {
     padding-left: 2rem;
     @include font(1.2rem);
+  }
+}
+
+
+@media (max-width: 479px) {
+  .name {
+    @include font(2rem, $weight: boold);
+  }
+  .container {
+    width: 90%;
+    padding-left: 0;
+  }
+}
+
+@media (max-width: 370px) {
+  .name {
+    min-width: 10rem;
   }
 }

@@ -6,7 +6,7 @@
   align-items: center;
   display: flex;
   flex-direction: column;
-  row-gap: 2.5rem;
+  row-gap: 1.2rem;
   font-size: 1.8rem;
   padding: 3rem 0 3.5rem 1rem;
   position: relative;
@@ -22,3 +22,17 @@
 .border {
   border-bottom: 0.5rem solid $color-secondary-dark;
 }
+
+@media (max-width: 479px) {
+  .container {
+    row-gap: 1rem;
+    padding: 2rem 0 2.5rem 1rem;
+    h3 {
+      @include font(3rem, $weight: boold);
+    }
+  }
+}
+
+// @media (max-width: 370px) {
+
+// }

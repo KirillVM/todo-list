@@ -8,11 +8,18 @@
 .main {
   display: flex;
   flex-direction: column;
-  row-gap: 5rem;
+  row-gap: 4rem;
   flex-grow: 2;
   align-self: center;
 
   border-radius: 50%;
   background-attachment: fixed;
   background-size: cover;
+}
+
+@media (max-width: 767px) {
+  .main {
+    row-gap: 0.5rem;
+    padding: 2rem 0 2.5rem 1rem;
+  }
 }

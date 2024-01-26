@@ -11,7 +11,7 @@ const TaskList = (): JSX.Element => {
   return (
     <>
       <section className={clsx(styles.container, styles.border)}>
-        <h3>InProgress</h3>
+        <h3>In Progress</h3>
         {data &&
           data.map((task) => {
             if (task.status === 'progress')
