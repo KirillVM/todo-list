@@ -1,0 +1,13 @@
+@import '../../styles/vars.scss';
+
+header {
+  padding: 2.5rem 2rem;
+  background-color: $color-secondary-dark;
+  box-shadow: 0 2.5rem 2.5rem -0.9rem rgba(83, 83, 109, 0.11);
+  transition: all 0.5s ease;
+  z-index: 10;
+
+  h1 {
+    display: none;
+  }
+}

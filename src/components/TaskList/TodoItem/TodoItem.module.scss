@@ -1,0 +1,86 @@
+@import '../../../styles/vars';
+@import '../../../styles/mixins';
+
+.container {
+  width: 80%;
+  display: flex;
+  align-items: center;
+  padding: 1.6rem 0.5rem 1.2rem 0;
+  border: none;
+  border-radius: 0.5rem;
+  @include font(1.5rem);
+  color: $color-secondary;
+
+  &:hover {
+    cursor: pointer;
+    background-color: $color-secondary-dark;
+    transition: 0.2s ease;
+  }
+}
+
+.checkbox-image {
+  width: 3rem;
+  height: 3rem;
+  border: none;
+  border-radius: 0.5rem;
+  margin-top: 0.5rem;
+  transition: 0.2s ease;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:active {
+    scale: 0.9;
+  }
+}
+
+.remove-image {
+  width: 5rem;
+  height: 5rem;
+  transition: 0.2s ease;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:active {
+    scale: 0.9;
+  }
+}
+
+.description {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 2;
+  color: $color-text;
+  row-gap: 1rem;
+
+  .name {
+    margin: 0;
+    padding-left: 2rem;
+  }
+
+  .date {
+    padding-left: 2rem;
+    @include font(1.2rem);
+  }
+}
+
+
+@media (max-width: 479px) {
+  .name {
+    @include font(2rem, $weight: boold);
+  }
+  .container {
+    width: 90%;
+    padding-left: 0;
+  }
+}
+
+@media (max-width: 370px) {
+  .name {
+    min-width: 10rem;
+  }
+}
