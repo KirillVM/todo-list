@@ -1,51 +1,18 @@
 @import './styles/vars.scss';
+.app {
+  height: 100%;
+  padding: 5rem calc(50% - 50vh);
+  background-color: $color-secondary;
+}
 
 .main {
   display: flex;
+  flex-direction: column;
+  row-gap: 5rem;
   flex-grow: 2;
   align-self: center;
-  padding: 0 calc(50% - 50vh);
-}
 
-header {
-  padding: 2.5rem 2rem;
-  background-color: $color-secondary;
-  box-shadow: 0 2.5rem 2.5rem -0.9rem rgba(83, 83, 109, 0.11);
-  transition: all 0.5s ease;
-  z-index: 10;
+  border-radius: 50%;
+  background-attachment: fixed;
+  background-size: cover;
 }
-
-footer {
-  display: flex;
-  justify-content: center;
-  background: $color-secondary;
-  .container {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 1rem 2rem 1rem;
-    max-width: 119.2rem;
-    width: 100%;
-  }
-  
-  .year {
-    font-weight: 500;
-    font-size: 1.8rem;
-    color: $color-black;
-  }
-  
-  .githubs {
-    display: flex;
-    column-gap: 2.5rem;
-  }
-  
-  @media (max-width: 479px) {
-    .container {
-      flex-direction: column;
-      align-items: center;
-      row-gap: 0.5rem;
-      padding: 1.5rem 2rem 0.5rem;
-    }
-  }
-}
-

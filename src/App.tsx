@@ -1,34 +1,23 @@
 import clsx from 'clsx';
-import github_logo from './assets/github.svg';
 import styles from './App.module.scss';
-import TaskRedactor from './components/TaskRedactor/TaskRedactor';
+import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
+import TodoPage from './pages/Todo/Todo';
+import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
+import ErrorBoundaryPage from './pages/ErrorBoundary/ErrorBoundaryPage';
 
 function App() {
   return (
     <>
-      <header className={clsx(styles.header)}>
-        <div className={clsx(styles.container)}>
-          <h1>TODO</h1>
+      <ErrorBoundary fallback={<ErrorBoundaryPage />}>
+        <div className={clsx(styles.app)}>
+          <Header />
+          <main className={clsx(styles.main)}>
+            <TodoPage />
+          </main>
+          <Footer />
         </div>
-
-      </header>
-      <main className={clsx(styles.main)}>
-        <TaskRedactor />
-      </main>
-      <footer>
-        <div className={styles.container}>
-          <p className={styles.year}>2024</p>
-          <div className={styles.githubs}>
-              <a
-                target="_blank"
-                href={`https://github.com/KirillVM`}
-                rel="noreferrer"
-              >
-                <img src={github_logo} alt="Github icon" />
-              </a>
-          </div>
-        </div>
-      </footer>
+      </ErrorBoundary>
     </>
   );
 }
